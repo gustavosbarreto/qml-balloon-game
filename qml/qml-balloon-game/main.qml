@@ -1,11 +1,27 @@
 import QtQuick 1.1
 
 Rectangle {
-    width: 360
-    height: 360
-    Text {
-        text: "QML Ballon Game"
-        anchors.centerIn: parent
+    id: screen
+    width: 800
+    height: 600
+
+    color: "#00B2FF"
+
+    function randomNumber(from, to) {
+       return Math.floor(Math.random() * (to - from + 1) + from);
+    }
+
+    Timer {
+        interval: 2000
+        repeat: true
+        running: true
+
+        onTriggered: {
+            var component = Qt.createComponent("Balloon.qml");
+            var balloon = component.createObject(screen);
+            balloon.x = randomNumber(0, 500);
+            balloon.y = -100;
+        }
     }
     MouseArea {
         anchors.fill: parent
