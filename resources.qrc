@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/Balloon.png</file>
+        <file>images/Dart.png</file>
+        <file>images/BalloonSpriteSheet.png</file>
     </qresource>
 </RCC>
