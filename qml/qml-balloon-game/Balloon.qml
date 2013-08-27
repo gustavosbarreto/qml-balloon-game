@@ -18,6 +18,32 @@ Item {
         width: parent.height
         clip: true
 
+        transform: Rotation {
+            id: rotator
+
+            origin {
+                x: 60
+                y: 110
+             }
+             angle: 0
+        }
+
+        SequentialAnimation {
+            id: shake
+            PropertyAnimation { easing.type: Easing.InQuad; duration: 400; target: rotator; property: "angle"; to: 10 }
+            PropertyAnimation { easing.type: Easing.InQuad; duration: 400; target: rotator; property: "angle"; to: -10 }
+        }
+
+        Timer {
+            running: true
+            repeat: true
+            interval: 800
+
+            onTriggered: {
+                shake.restart();
+            }
+        }
+
         Image {
             id: spriteImage
             source: "qrc:/images/BalloonSpriteSheet.png"
@@ -43,7 +69,7 @@ Item {
         repeat: true
 
         onTriggered: {
-            balloon.y += 3;
+            balloon.y -= 3;
 
             if (balloon.y > game.height) {
                 game.removeBalloon(balloon);

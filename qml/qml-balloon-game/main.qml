@@ -31,7 +31,7 @@ Rectangle {
             var component = Qt.createComponent("Balloon.qml");
             var balloon = component.createObject(game);
             balloon.x = randomNumber(200, game.width);
-            balloon.y = -100;
+            balloon.y = game.height;
             GameLogic.balloons.push(balloon);
         }
     }
@@ -43,11 +43,11 @@ Rectangle {
     }
 
     // Dart animations
-    Timer { id: goUp; repeat: true; interval: 10; onTriggered: { dart.y -= 3; } }
-    Timer { id: goDown; repeat: true; interval: 10; onTriggered: { dart.y += 3; } }
-    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 2000; to: game.width; onCompleted: { dart.x = 0; } }
+    Timer { id: goUp; repeat: true; interval: 15; onTriggered: { dart.y -= 4; } }
+    Timer { id: goDown; repeat: true; interval: 15; onTriggered: { dart.y += 4; } }
+    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 2500; to: game.width; onCompleted: { dart.x = 0; } }
 
-    Timer { repeat: true; interval: 50; running: true; onTriggered: GameLogic.collisionDetect() }
+    Timer { repeat: true; interval: 80; running: true; onTriggered: GameLogic.collisionDetect() }
 
     Keys.onReleased: {
         if (event.key == Qt.Key_Up) {
