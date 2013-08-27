@@ -26,7 +26,8 @@ Item {
         }
     }
 
-    Timer { id: animation; repeat: true; interval: 80; onTriggered: { if (sprite.frame == 7) animation.stop(); sprite.frame++; } }
+    Timer { id: animation; repeat: true; interval: 80; onTriggered: { if (sprite.frame == 7) { if (game.score / 150 < 100) game.score += 150; animation.stop() }; sprite.frame++; } }
+
 
     function explode() {
         if (!destroyed) {

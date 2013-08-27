@@ -7,7 +7,7 @@ Rectangle {
     height: 600
 
     focus: true
-
+    property int score: 0
     color: "#00B2FF"
 
     function randomNumber(from, to) {
@@ -37,7 +37,7 @@ Rectangle {
     }
 
     Image {
-        id: 'dart'
+        id: dart;
         source: "qrc:/images/Dart.png"
         y: 400
     }
@@ -67,4 +67,22 @@ Rectangle {
     Keys.onSpacePressed: {
         fire.start();
     }
+
+    Rectangle {
+        id: scoreBar
+        width: parent.width; height: 30
+        color: "#fff"
+        anchors.bottom: game.bottom
+        z: 9999;
+
+        Text {
+            id: scoreText
+            color: "#000"
+            anchors { right: parent.right; verticalCenter: parent.verticalCenter;}
+            text: "Score:" + game.score
+            font { pointSize: 13 }
+
+        }
+    }
 }
+
