@@ -10,6 +10,13 @@ Rectangle {
     property int score: 0
     color: "#00B2FF"
 
+    Image {
+        id: background
+        anchors.fill: parent
+        source: "qrc:/images/sky.jpg"
+        fillMode: Image.PreserveAspectCrop
+    }
+
     function randomNumber(from, to) {
        return Math.floor(Math.random() * (to - from + 1) + from);
     }
