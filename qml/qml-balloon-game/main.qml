@@ -52,7 +52,7 @@ Rectangle {
     // Dart animations
     Timer { id: goUp; repeat: true; interval: 15; onTriggered: { dart.y -= 4; } }
     Timer { id: goDown; repeat: true; interval: 15; onTriggered: { dart.y += 4; } }
-    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 2500; to: game.width; onCompleted: { dart.x = 0; } }
+    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 1300; to: game.width; onCompleted: { dart.x = 0; } }
 
     Timer { repeat: true; interval: 80; running: true; onTriggered: GameLogic.collisionDetect() }
 
@@ -77,17 +77,21 @@ Rectangle {
 
     Rectangle {
         id: scoreBar
-        width: parent.width; height: 30
-        color: "#fff"
-        anchors.bottom: game.bottom
+        width: parent.width; height: 40
+        anchors.top: game.top
         z: 9999;
+        color: "transparent"
+        /*gradient: Gradient {
+                GradientStop { position: 0.0; color: "#bddee3" }
+                GradientStop { position: 1.0; color: "#6a92f2" }
+            }*/
 
         Text {
             id: scoreText
-            color: "#000"
+            color: "#fff"
             anchors { right: parent.right; verticalCenter: parent.verticalCenter;}
             text: "Score:" + game.score
-            font { pointSize: 13 }
+            font { pointSize: 16 }
 
         }
     }

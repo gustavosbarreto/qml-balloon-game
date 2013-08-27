@@ -10,7 +10,7 @@ Item {
 
     Item {
         id: sprite
-        property int frame: 0
+        property int frame: 4
 
         anchors.centerIn: parent
 
@@ -52,7 +52,7 @@ Item {
         }
     }
 
-    Timer { id: animation; repeat: true; interval: 80; onTriggered: { if (sprite.frame == 7) { if (game.score / 150 < 100) game.score += 150; animation.stop() }; sprite.frame++; } }
+    Timer { id: animation; repeat: true; interval: 80; onTriggered: { if (sprite.frame == 7) { if (game.score / 20 < 100) game.score += 20; animation.stop() }; sprite.frame++; } }
 
 
     function explode() {
