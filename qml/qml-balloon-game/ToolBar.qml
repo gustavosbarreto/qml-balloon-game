@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import "ToolBar.js" as ToolBar
 
 Item {
     id: toolBarItem
@@ -34,6 +35,13 @@ Item {
             var item = dartComponent.createObject(toolBarItem);
             item.y=-0;
             item.x=(item.x + 28) *i;
+            ToolBar.items.push(item);
         }
+    }
+
+    function dropDart() {
+        var item = ToolBar.items.pop();
+        if (!item) return;
+        item.destroy();
     }
 }

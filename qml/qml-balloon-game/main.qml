@@ -17,7 +17,9 @@ Rectangle {
         fillMode: Image.PreserveAspectCrop
     }
 
-    ToolBar { }
+    ToolBar {
+        id: toolBar
+    }
 
     function randomNumber(from, to) {
        return Math.floor(Math.random() * (to - from + 1) + from);
@@ -76,6 +78,7 @@ Rectangle {
 
     Keys.onSpacePressed: {
         fire.start();
+        toolBar.dropDart();
     }
 
     Rectangle {
