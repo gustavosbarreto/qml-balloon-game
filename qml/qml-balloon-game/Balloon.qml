@@ -76,13 +76,19 @@ Item {
         destroyed = true;
     }
 
+    function randomNumber(from, to) {
+       return Math.floor(Math.random() * (to - from + 1) + from);
+    }
+
+    property int speed: randomNumber(1, 4)
+
     Timer {
         interval: 50
         running: true
         repeat: true
 
         onTriggered: {
-            balloon.y -= 3;
+            balloon.y -= balloon.speed;
 
             if (balloon.y + balloon.height < 0) {
                 game.removeBalloon(balloon);
