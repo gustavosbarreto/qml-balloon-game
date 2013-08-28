@@ -57,7 +57,15 @@ Rectangle {
     Timer { id: coolDown; interval: 800; onTriggered: { dart.x = 0 } }
     Timer { id: goUp; repeat: true; interval: 12; onTriggered: { dart.y -= 5; } }
     Timer { id: goDown; repeat: true; interval: 12; onTriggered: { dart.y += 5; } }
-    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 1300; to: game.width; onCompleted: { coolDown.start(); } }
+
+    ParallelAnimation {
+        id: fire
+
+        PropertyAnimation { target: dart; property: "x"; duration: 1300; to: game.width }
+        PropertyAnimation { target: dart; property: "y"; duration: 1300; to: dart.y + 150; easing.type: Easing.InQuad }
+
+        onCompleted: coolDown.start();
+    }
 
     Timer { repeat: true; interval: 100; running: true; onTriggered: GameLogic.collisionDetect() }
 
@@ -69,9 +77,9 @@ Rectangle {
     }
 
     Keys.onPressed: {
-        if (event.key == Qt.Key_Up) {
+        if (event.key == Qt.Key_Up && !fire.running) {
             goUp.start();
-        } else if (event.key == Qt.Key_Down) {
+        } else if (event.key == Qt.Key_Down && !fire.running) {
             goDown.start();
         }
     }
