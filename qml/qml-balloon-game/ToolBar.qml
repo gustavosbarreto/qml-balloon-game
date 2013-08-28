@@ -1,7 +1,7 @@
 import QtQuick 1.1
 
 Item {
-    id: nada
+    id: toolBarItem
     width: game.width
     height: 60
 
@@ -11,7 +11,7 @@ Item {
     }
 
     Component {
-        id: dartX
+        id: dartComponent
         Image {
             source: 'qrc:/images/Dart.png'
             width: 46
@@ -31,7 +31,7 @@ Item {
 
     Component.onCompleted: {
         for (var i = 0; i < 20; i++) {
-            var item = dartX.createObject(nada);
+            var item = dartComponent.createObject(toolBarItem);
             item.y=-0;
             item.x=(item.x + 28) *i;
         }
