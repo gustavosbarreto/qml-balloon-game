@@ -52,8 +52,21 @@ Item {
         }
     }
 
-    Timer { id: animation; repeat: true; interval: 80; onTriggered: { if (sprite.frame == 7) { if (game.score / 20 < 100) game.score += 20; animation.stop() }; sprite.frame++; } }
+    Timer {
+        id: animation;
+        repeat: true;
+        interval: 80;
+        onTriggered: {
+            if (sprite.frame == 7) {
+                if (game.score / 20 < 100)
+                    game.score += 20;
+                animation.stop()
+                balloon.destroy();
+            }
 
+            sprite.frame++;
+        }
+    }
 
     function explode() {
         if (!destroyed) {
@@ -71,7 +84,7 @@ Item {
         onTriggered: {
             balloon.y -= 3;
 
-            if (balloon.y > game.height) {
+            if (balloon.y + balloon.height < 0) {
                 game.removeBalloon(balloon);
                 balloon.destroy();
             }
