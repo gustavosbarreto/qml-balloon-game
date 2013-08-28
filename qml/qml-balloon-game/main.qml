@@ -50,11 +50,12 @@ Rectangle {
     }
 
     // Dart animations
-    Timer { id: goUp; repeat: true; interval: 15; onTriggered: { dart.y -= 4; } }
-    Timer { id: goDown; repeat: true; interval: 15; onTriggered: { dart.y += 4; } }
-    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 1300; to: game.width; onCompleted: { dart.x = 0; } }
+    Timer { id: coolDown; interval: 800; onTriggered: { dart.x = 0 } }
+    Timer { id: goUp; repeat: true; interval: 12; onTriggered: { dart.y -= 5; } }
+    Timer { id: goDown; repeat: true; interval: 12; onTriggered: { dart.y += 5; } }
+    PropertyAnimation { id: fire; target: dart; property: "x"; duration: 1300; to: game.width; onCompleted: { coolDown.start(); } }
 
-    Timer { repeat: true; interval: 80; running: true; onTriggered: GameLogic.collisionDetect() }
+    Timer { repeat: true; interval: 100; running: true; onTriggered: GameLogic.collisionDetect() }
 
     Keys.onReleased: {
         if (event.key == Qt.Key_Up) {
@@ -79,12 +80,9 @@ Rectangle {
         id: scoreBar
         width: parent.width; height: 40
         anchors.top: game.top
-        z: 9999;
+        z: 5
         color: "transparent"
-        /*gradient: Gradient {
-                GradientStop { position: 0.0; color: "#bddee3" }
-                GradientStop { position: 1.0; color: "#6a92f2" }
-            }*/
+
 
         Text {
             id: scoreText
