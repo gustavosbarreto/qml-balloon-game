@@ -7,7 +7,6 @@ Rectangle {
     height: 600
     opacity: 1
 
-
     Image {
 
         id: background
@@ -80,7 +79,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    menuScreen.opacity = 0;
+                    menuBox.opacity = 0;
                     game.opacity = 1;
                 }
 

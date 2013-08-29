@@ -7,7 +7,7 @@ Rectangle {
     height: 600
 
     Menu {
-        id: menuScreen
+        id: menuBox
         anchors { horizontalCenter: gameScreen.horizontalCenter; verticalCenter: gameScreen.verticalCenter;}
     }
 
@@ -24,6 +24,11 @@ Rectangle {
         focus: true
         property int score: 0
         color: "#00B2FF"
+
+        Keys.onEscapePressed: {
+            menuBox.opacity = 1;
+            game.opacity = 0;
+        }
 
         Image {
             id: background
